@@ -186,3 +186,8 @@ class ThinResNet34(nn.Module):
         Z = self.fc(Z)
 
         return Z
+
+if __name__ == '__main__':
+    x = torch.randn((1, 12000))
+    model = ThinResNet34()
+    print(model(x).shape)

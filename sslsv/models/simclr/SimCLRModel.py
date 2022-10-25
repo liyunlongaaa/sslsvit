@@ -3,6 +3,7 @@ from torch import nn
 import torch.nn.functional as F
 
 from sslsv.encoders.ThinResNet34 import ThinResNet34
+from sslsv.encoders.encoder import *
 
 from sslsv.losses.InfoNCE import InfoNCE
 from sslsv.losses.VICReg import VICReg
@@ -32,7 +33,8 @@ class SimCLRModel(nn.Module):
             config.barlowtwins_lambda
         )
 
-        self.encoder = ThinResNet34()
+        #self.encoder = ThinResNet34()
+        self.encoder = vit_tiny()
         self.mlp = nn.Sequential(
             nn.Linear(1024, self.mlp_dim),
             nn.BatchNorm1d(self.mlp_dim),
